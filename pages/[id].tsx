@@ -1,22 +1,24 @@
+import { GetStaticProps, GetStaticPaths } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { marked } from "marked";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
 
 interface Post {
-  id: string;
+  id: string | string[];
   title: string;
   content: string;
 }
 
-interface PostParams {
-  id: string;
-  [key: string]: string; // 인덱스 시그니처를 추가하여 string 형식의 다른 매개변수도 처리할 수 있도록 합니다.
+interface DetailPageProps {
+  post: Post;
 }
 
-export default function PostPage({ post }: { post: Post }): JSX.Element {
-  const { id, title, content } = post;
+export default function PostDetail({ post }: DetailPageProps): JSX.Element {
+  const { title, content } = post;
 
   return (
     <div>
@@ -26,7 +28,7 @@ export default function PostPage({ post }: { post: Post }): JSX.Element {
   );
 }
 
-export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const postsDirectory = path.join(process.cwd(), "__posts");
   const fileNames = fs.readdirSync(postsDirectory);
 
@@ -43,22 +45,25 @@ export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<
-  { post: Post },
-  PostParams
-> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<DetailPageProps> = async ({
+  params,
+}) => {
   const { id } = params;
 
   const filePath = path.join(process.cwd(), "__posts", `${id}.md`);
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(fileContents);
 
-  const markdownContent = marked(content);
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify);
+  const htmlContent = processor.processSync(content).toString();
 
   const post: Post = {
     id,
     title: data.title,
-    content: markdownContent,
+    content: htmlContent,
   };
 
   return {

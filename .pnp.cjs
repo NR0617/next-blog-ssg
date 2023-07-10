@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e5c58f432ce819588c6dd76d506348830bfc823210e85fe724cd0903457d99cf296ed9df24b519a1a5bc7c9587c865f0a01e430e57bcafed33ce3a2ff7729757#npm:18.2.0"],\
             ["rehype-stringify", "npm:9.0.3"],\
+            ["remark-html", "npm:15.0.2"],\
             ["remark-parse", "npm:10.0.2"],\
             ["remark-rehype", "npm:10.1.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -509,6 +510,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vfile", "npm:5.3.7"],\
             ["web-namespaces", "npm:2.0.1"],\
             ["zwitch", "npm:2.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["hast-util-sanitize", [\
+        ["npm:4.1.0", {\
+          "packageLocation": "./.yarn/cache/hast-util-sanitize-npm-4.1.0-a86b02321a-4f1786d655.zip/node_modules/hast-util-sanitize/",\
+          "packageDependencies": [\
+            ["hast-util-sanitize", "npm:4.1.0"],\
+            ["@types/hast", "npm:2.3.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1083,6 +1094,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e5c58f432ce819588c6dd76d506348830bfc823210e85fe724cd0903457d99cf296ed9df24b519a1a5bc7c9587c865f0a01e430e57bcafed33ce3a2ff7729757#npm:18.2.0"],\
             ["rehype-stringify", "npm:9.0.3"],\
+            ["remark-html", "npm:15.0.2"],\
             ["remark-parse", "npm:10.0.2"],\
             ["remark-rehype", "npm:10.1.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -1171,6 +1183,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rehype-stringify", "npm:9.0.3"],\
             ["@types/hast", "npm:2.3.4"],\
             ["hast-util-to-html", "npm:8.0.4"],\
+            ["unified", "npm:10.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["remark-html", [\
+        ["npm:15.0.2", {\
+          "packageLocation": "./.yarn/cache/remark-html-npm-15.0.2-dd1249c221-1fe1bf1fd2.zip/node_modules/remark-html/",\
+          "packageDependencies": [\
+            ["remark-html", "npm:15.0.2"],\
+            ["@types/mdast", "npm:3.0.11"],\
+            ["hast-util-sanitize", "npm:4.1.0"],\
+            ["hast-util-to-html", "npm:8.0.4"],\
+            ["mdast-util-to-hast", "npm:12.3.0"],\
             ["unified", "npm:10.1.2"]\
           ],\
           "linkType": "HARD"\

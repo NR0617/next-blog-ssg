@@ -2,7 +2,6 @@ import { GetStaticProps } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import Link from "next/link";
 
 interface Post {
   id: string;
@@ -13,16 +12,14 @@ interface ListPageProps {
   posts: Post[];
 }
 
-export default function Index({ posts }: ListPageProps): JSX.Element {
+export default function ListPage({ posts }: ListPageProps): JSX.Element {
   return (
     <div>
       <h1>포스트 목록</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
-            <Link href={`/${post.id}`}>
-              <a>{post.title}</a>
-            </Link>
+            <a href={`/${post.id}`}>{post.title}</a>
           </li>
         ))}
       </ul>
